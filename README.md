@@ -1,2 +1,3 @@
-# HDT6-MAP_Interface
-Implementation and comparison of HashMap, TreeMap, and LinkedHashMap in Java 
+# HDT6-Interfaces_MAP
+Implementación y comparación de HashMap, TreeMap, y LinkedHashMap en Java. 
+
