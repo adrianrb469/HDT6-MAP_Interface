@@ -9,7 +9,7 @@ public class Product {
 		this.name = name;
 		this.quantity = quantity;
 	}
-
+	
 	public String getCategory() {
 		return category;
 	}
