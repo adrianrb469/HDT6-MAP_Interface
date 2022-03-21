@@ -14,10 +14,18 @@ public class User {
 
 	}
 	
+	/***
+	 * Adds a product to the user's cart
+	 * @param product
+	 */
 	public void addProduct(Product product) {
 		cart.put(product.getName(), product);
 	}
 	
+	/***
+	 * Returns a Map<String, Product> with the user's cart
+	 * @return cart
+	 */
 	public Map<String, Product> getCart() {
 		return cart;
 	}

@@ -10,10 +10,13 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
+		// Menu variables
 		Scanner input = new Scanner(System.in);
 		boolean quit = false;
+		
 		String option = "";
 		String option2 = "";
+		
 		int map = 0;
 		MapFactory mapFactory = new MapFactory();
 
@@ -97,7 +100,13 @@ public class Main {
 
 	}
 
-	// function to sort hashmap by values
+	/***
+	 * This function returns a sorted Map<String, Product> in alphabetical order using the
+	 * category from the Product or value
+	 * @param mapToSort
+	 * @param mapImplemented
+	 * @return sorted Map<String, Product>
+	 */
 	public static Map<String, Product> sortByCategory(Map<String, Product> mapToSort,
 			Map<String, Product> mapImplemented) {
 		// Converts Map into a list
