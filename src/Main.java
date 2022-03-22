@@ -16,7 +16,7 @@ public class Main {
 		
 		String option = "";
 		String option2 = "";
-		
+		String option3 = "";
 		int map = 0;
 		MapFactory mapFactory = new MapFactory();
 
@@ -36,18 +36,26 @@ public class Main {
 			switch (option) {
 			case "1":
 				// Add product to user cart
-				for (Entry<String, Product> entry : stock.getProductMap().entrySet()) {
+				System.out.println("Ingrese la categoria");
+				option2 = input.nextLine();
+				for (Entry<String, Product> entry : stock.getProductsFromCategory(option2).entrySet()) {
 					String key = entry.getKey();
 					Product value = entry.getValue();
 					System.out.println(value.getCategory() + " | " + key);
 				}
 				System.out.println("Ingrese el nombre del producto a agregar");
-				option2 = input.nextLine();
-				Product product = stock.getProductMap().get(option2);
-				System.out.println("Ingrese la cantidad que desea agregar");
-				option2 = input.nextLine();
-				product.setQuantity(product.getQuantity() + Integer.valueOf(option2));
-				user.addProduct(product);
+				option3 = input.nextLine();
+				if (stock.getProductsFromCategory(option2).get(option3) == null) {
+					System.out.println("Producto no se encuentra en la categoria actual");
+					
+				}else {
+					Product product = stock.getProductMap().get(option3);
+					System.out.println("Ingrese la cantidad que desea agregar");
+					option2 = input.nextLine();
+					product.setQuantity(product.getQuantity() + Integer.valueOf(option2));
+					user.addProduct(product);
+					
+				}
 				break;
 			case "2":
 				// Gets category of specified product
