@@ -28,18 +28,7 @@ public class Stock {
 	public Map<String, Product> getProductMap() {
 		return productMap;
 	}
-	
-	public Map<String,Product> getProductsFromCategory(String category) {
-		Map<String,Product> queryMap = productMap;
-		queryMap.clear();
-		for (Product product : products) {
-			if (product.getCategory().equals(category)) {
-				queryMap.put(product.getName(), product);	
-			}
-			
-		}
-		return queryMap;
-	}
+
 	/***
 	 * Returns a string with the category of the product
 	 * 

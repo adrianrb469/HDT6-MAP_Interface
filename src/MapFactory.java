@@ -19,11 +19,11 @@ public class MapFactory {
 	 */
 	public Map<String, Product> getMap(int map) {
 		switch (map) {
-		case 0:
-			return new HashMap<String, Product>();
 		case 1:
-			return new LinkedHashMap<String, Product>();
+			return new HashMap<String, Product>();
 		case 2:
+			return new LinkedHashMap<String, Product>();
+		case 3:
 			return new TreeMap<String, Product>();
 		}
 		return null;

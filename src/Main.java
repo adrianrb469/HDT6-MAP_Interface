@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class Main {
 		
 		String option = "";
 		String option2 = "";
-		String option3 = "";
+		
 		int map = 0;
 		MapFactory mapFactory = new MapFactory();
 
@@ -36,26 +37,18 @@ public class Main {
 			switch (option) {
 			case "1":
 				// Add product to user cart
-				System.out.println("Ingrese la categoria");
-				option2 = input.nextLine();
-				for (Entry<String, Product> entry : stock.getProductsFromCategory(option2).entrySet()) {
+				for (Entry<String, Product> entry : stock.getProductMap().entrySet()) {
 					String key = entry.getKey();
 					Product value = entry.getValue();
 					System.out.println(value.getCategory() + " | " + key);
 				}
 				System.out.println("Ingrese el nombre del producto a agregar");
-				option3 = input.nextLine();
-				if (stock.getProductsFromCategory(option2).get(option3) == null) {
-					System.out.println("Producto no se encuentra en la categoria actual");
-					
-				}else {
-					Product product = stock.getProductMap().get(option3);
-					System.out.println("Ingrese la cantidad que desea agregar");
-					option2 = input.nextLine();
-					product.setQuantity(product.getQuantity() + Integer.valueOf(option2));
-					user.addProduct(product);
-					
-				}
+				option2 = input.nextLine();
+				Product product = stock.getProductMap().get(option2);
+				System.out.println("Ingrese la cantidad que desea agregar");
+				option2 = input.nextLine();
+				product.setQuantity(product.getQuantity() + Integer.valueOf(option2));
+				user.addProduct(product);
 				break;
 			case "2":
 				// Gets category of specified product
@@ -71,7 +64,7 @@ public class Main {
 				if (option2.equals("1")) {
 					mapPrinted = user.getCart();
 				} else {
-					mapPrinted = sortByCategory(user.getCart(), mapFactory.getMap(map));
+					mapPrinted = sortByCategory(user.getCart());
 				}
 				for (Entry<String, Product> entry : mapPrinted.entrySet()) {
 					String key = entry.getKey();
@@ -88,7 +81,7 @@ public class Main {
 				if (option2.equals("1")) {
 					mapPrinted = stock.getProductMap();
 				} else {
-					mapPrinted = sortByCategory(stock.getProductMap(), mapFactory.getMap(map));
+					mapPrinted = sortByCategory(stock.getProductMap());
 				}
 				for (Entry<String, Product> entry : mapPrinted.entrySet()) {
 					String key = entry.getKey();
@@ -115,8 +108,7 @@ public class Main {
 	 * @param mapImplemented
 	 * @return sorted Map<String, Product>
 	 */
-	public static Map<String, Product> sortByCategory(Map<String, Product> mapToSort,
-			Map<String, Product> mapImplemented) {
+	public static Map<String, Product> sortByCategory(Map<String, Product> mapToSort) {
 		// Converts Map into a list
 		List<Entry<String, Product>> list = new LinkedList<Entry<String, Product>>(mapToSort.entrySet());
 
@@ -130,7 +122,7 @@ public class Main {
 			}
 
 		});
-		Map<String, Product> sortedMap = mapImplemented;
+		Map<String, Product> sortedMap = new LinkedHashMap<>();
 		for (Entry<String, Product> entry : list) {
 			sortedMap.put(entry.getKey(), entry.getValue());
 		}
